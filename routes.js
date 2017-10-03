@@ -2,5 +2,5 @@
 var  CategoryCtrl  = require("./controllers/CategoryCtrl.js");
 
 module.exports = function(app){
-    app.get('/getcategory',CategoryCtrl.getCategory);
+    app.get('/',CategoryCtrl.getCategory);
 }
