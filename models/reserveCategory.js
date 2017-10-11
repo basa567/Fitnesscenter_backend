@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+ var mongoose = require('mongoose');
 
 var ReserveCategory = mongoose.model('reserveCategory', {
   category: {
