@@ -83,6 +83,24 @@ app.get('/reserveCategory/:id', (req, res) => {
   })
 })
 
+// delete request to reserved categories
+
+app.delete('/reserveCategory/:id', (req, res) => {
+  var id = req.params.id;
+
+  if(!ObjectID.isValid(id)){
+    res.status(404).send();
+  }
+
+  ReserveCategory.findByIdAndRemove(id).then((category) => {
+    if(!category){
+      res.status(404).send();
+    }
+    res.status(200).send(category);
+  }).catch((e) => {
+    res.status(400).send();
+  });
+});
 
 app.listen(app.get('port'), function() {
   console.log('Up and running in a port:', PORT);
