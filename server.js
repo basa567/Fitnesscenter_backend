@@ -18,9 +18,8 @@ var { ObjectID} = require('mongodb');
     //  mongoose.connect('mongodb://localhost:27017/FitnessApp');
     // var db = mongoose.connection;
 
-    app = express();
+    var app = express();
     var port = process.env.PORT || 5000;
-
 
 // app.use(express.static(path.join(__dirname, 'assests')));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -148,8 +147,8 @@ app.patch('/reserveCategory/:id', (req, res) => {
   })
 })
 
-app.listen(port, () => {
-  console.log(`Up and running on port ${port}`)
+app.listen(port, function() {
+    console.log("App is running on port " + port);
 });
 
 module.exports = {app};
