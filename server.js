@@ -13,10 +13,10 @@ var {CategoryModel} = require('./models/Category')
 var { ObjectID} = require('mongodb');
 
 
-    // MONGODB_URI = 'mongodb://fitnesscenter:fitnesscenter@ds159024.mlab.com:59024/heroku_xg1r2cj8';
+    MONGODB_URI = 'mongodb://fitnesscenter:fitnesscenter@ds159024.mlab.com:59024/heroku_xg1r2cj8';
     mongoose.Promise = global.Promise;
-    // mongoose.connect(MONGODB_URI);
-     mongoose.connect('mongodb://localhost:27017/FitnessApp');
+    mongoose.connect(MONGODB_URI);
+    //  mongoose.connect('mongodb://localhost:27017/FitnessApp');
     var db = mongoose.connection;
 
     PORT      = process.env.PORT || 5000;
