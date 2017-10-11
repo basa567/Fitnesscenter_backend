@@ -6,6 +6,7 @@ var express    = require('express')
     nodemon    = require('nodemon')
 
 var {ReserveCategory} = require('./models/ReserveCategory');
+var { ObjectID} = require('mongodb');
 
 
     MONGODB_URI = 'mongodb://fitnesscenter:fitnesscenter@ds159024.mlab.com:59024/heroku_xg1r2cj8';
@@ -34,8 +35,9 @@ app.use(function(req,res,next){
 require('./routes.js')(app);
 
 
-// add to cart routes start
+// ======reserveCategory routes start=====
 
+// post request to reserveCategory
 app.post('/reserveCategory', (req, res) => {
   var category = new ReserveCategory({
     category: req.body.category,
@@ -52,12 +54,33 @@ app.post('/reserveCategory', (req, res) => {
   })
 });
 
+
+// get request to reserved categories
 app.get('/reserveCategory', (req, res) => {
   ReserveCategory.find().then((categories)=> {
     res.send({categories});
   })
 }, (e) => {
   res.status(400).send(e);
+})
+
+
+// get request by id to reserved categories
+app.get('/reserveCategory/:id', (req, res) => {
+  var id = req.params.id;
+
+  if(!ObjectID.isValid(id)){
+    res.status(404).send();
+  }
+
+  ReserveCategory.findById(id).then((reserveCategory) => {
+    if(!reserveCategory){
+      res.status(404).send();
+    }
+      return res.send({reserveCategory});
+  }, (e) => {
+    res.status(404).send();
+  })
 })
 
 
