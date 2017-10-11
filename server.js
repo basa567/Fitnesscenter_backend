@@ -1,9 +1,8 @@
-var express    = require('express')
-    path       = require('path');
-    ejs        = require('ejs');
-    mongoose   = require('mongoose')
-    bodyParser = require('body-parser')
-    nodemon    = require('nodemon')
+var express    = require('express');
+var path       = require('path');
+var ejs        = require('ejs');
+var mongoose   = require('mongoose');
+var bodyParser = require('body-parser');
 
 
 const _ = require('lodash');
@@ -13,22 +12,22 @@ var {CategoryModel} = require('./models/Category')
 var { ObjectID} = require('mongodb');
 
 
-    MONGODB_URI = 'mongodb://fitnesscenter:fitnesscenter@ds159024.mlab.com:59024/heroku_xg1r2cj8';
+    var MONGODB_URI = 'mongodb://fitnesscenter:fitnesscenter@ds159024.mlab.com:59024/heroku_xg1r2cj8';
     mongoose.Promise = global.Promise;
     mongoose.connect(MONGODB_URI || 'mongodb://localhost:27017/FitnessApp');
     //  mongoose.connect('mongodb://localhost:27017/FitnessApp');
-    var db = mongoose.connection;
+    // var db = mongoose.connection;
 
     app = express();
-    const port = process.env.PORT || 5000;
+    var port = process.env.PORT || 5000;
 
 
-app.use(express.static(path.join(__dirname, 'assests')));
+// app.use(express.static(path.join(__dirname, 'assests')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.set('views', __dirname );
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'ejs');
+// app.set('views', __dirname );
+// app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'ejs');
 app.use(function(req,res,next){
   res.header('Access-Control-Allow-Origin',"*");
   res.header('Access-Control-Allow-Methods',"GET,PUT,POST,DELETE");
