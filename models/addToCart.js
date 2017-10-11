@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var addToCart = mongoose.model('addToCart', {
+var AddToCart = mongoose.model('addToCart', {
   category: {
     type: String,
     required: true,
@@ -14,13 +14,15 @@ var addToCart = mongoose.model('addToCart', {
   reservedAt: {
     type: Number
   },
-  Time: {
-    start: Number,
-    end: Number
+  start: {
+    type: Number
+  },
+  end: {
+    type: Number
   }
 });
 
 
 module.exports = {
-  addToCart
+  AddToCart
 };
