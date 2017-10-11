@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 const _ = require('lodash');
 
-var {ReserveCategory} = require('./models/ReserveCategory');
+var {ReserveCategory} = require('./models/reserveCategory');
 var {CategoryModel} = require('./models/Category')
 var { ObjectID} = require('mongodb');
 
