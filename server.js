@@ -53,9 +53,11 @@ app.post('/reserveCategory', (req, res) => {
 });
 
 app.get('/reserveCategory', (req, res) => {
-
+  ReserveCategory.find().then((categories)=> {
+    res.send({categories});
+  })
 }, (e) => {
-
+  res.status(400).send(e);
 })
 
 
