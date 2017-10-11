@@ -5,7 +5,7 @@ var express    = require('express')
     bodyParser = require('body-parser')
     nodemon    = require('nodemon')
 
-var {AddToCart} = require('./models/AddToCart');
+var {ReserveCategory} = require('./models/ReserveCategory');
 
 
     MONGODB_URI = 'mongodb://fitnesscenter:fitnesscenter@ds159024.mlab.com:59024/heroku_xg1r2cj8';
@@ -36,8 +36,8 @@ require('./routes.js')(app);
 
 // add to cart routes start
 
-app.post('/addToCart', (req, res) => {
-  var category = new AddToCart({
+app.post('/reserveCategory', (req, res) => {
+  var category = new ReserveCategory({
     category: req.body.category,
     resource: req.body.resource,
     reservedAt: req.body.reservedAt,
@@ -51,6 +51,12 @@ app.post('/addToCart', (req, res) => {
     res.status(400).send(e);
   })
 });
+
+app.get('/reserveCategory', (req, res) => {
+
+}, (e) => {
+
+})
 
 
 app.listen(app.get('port'), function() {

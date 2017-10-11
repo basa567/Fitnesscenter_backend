@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var AddToCart = mongoose.model('addToCart', {
+var ReserveCategory = mongoose.model('reserveCategory', {
   category: {
     type: String,
     required: true,
@@ -24,5 +24,5 @@ var AddToCart = mongoose.model('addToCart', {
 
 
 module.exports = {
-  AddToCart
+  ReserveCategory
 };
