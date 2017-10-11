@@ -15,14 +15,14 @@ var { ObjectID} = require('mongodb');
 
     MONGODB_URI = 'mongodb://fitnesscenter:fitnesscenter@ds159024.mlab.com:59024/heroku_xg1r2cj8';
     mongoose.Promise = global.Promise;
-    mongoose.connect(MONGODB_URI);
+    mongoose.connect(MONGODB_URI || 'mongodb://localhost:27017/FitnessApp');
     //  mongoose.connect('mongodb://localhost:27017/FitnessApp');
     var db = mongoose.connection;
 
-    PORT      = process.env.PORT || 5000;
     app = express();
+    const port = process.env.PORT || 5000;
 
-app.set('port', PORT);
+
 app.use(express.static(path.join(__dirname, 'assests')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -149,6 +149,8 @@ app.patch('/reserveCategory/:id', (req, res) => {
   })
 })
 
-app.listen(app.get('port'), function() {
-  console.log('Up and running in a port:', PORT);
+app.listen(port, () => {
+  console.log(`Up and running on port ${port}`)
 });
+
+module.exports = {app};
