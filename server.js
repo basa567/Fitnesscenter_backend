@@ -65,20 +65,28 @@ app.get('/', (req, res) => {
 
 // post request to reserveCategory
 app.post('/reserveCategory', (req, res) => {
-  var category = new ReserveCategory({
+  var reservedetail = new ReserveCategory({
     category: req.body.category,
-    resource: req.body.resource,
-    reservedAt: req.body.reservedAt,
-    start: req.body.start,
-    end: req.body.end
+    useremail: req.body.useremail,
+    reservedate: req.body.reservedate,
+    status: req.body.status,
+    time: req.body.time
   });
 
-  category.save().then((doc) => {
+  reservedetail.save().then((doc) => {
     res.send(doc);
   }, (e) => {
     res.status(400).send(e);
   })
 });
+
+app.get('/reserveCategory/:date', (req, res) => {
+  ReserveCategory.find({reservedate:req.params.date}).then((categories)=> {
+    res.send({categories});
+  })
+}, (e) => {
+  res.status(400).send(e);
+})
 
 
 // get request to reserved categories
@@ -128,10 +136,20 @@ app.delete('/reserveCategory/:id', (req, res) => {
   });
 });
 
+app.put('/reserveCategory/:id',(req,res)=>{
+  var id = req.params.id;
+  var reserve = { status:1, useremail: req.body.useremail };
+  ReserveCategory.update({_id:id},reserve).then((doc) => {
+    res.send(doc);
+  }, (e) => {
+    res.status(400).send(e);
+  })
+})
+
 app.patch('/reserveCategory/:id', (req, res) => {
   var id = req.params.id;
   // using lodash to let user to update only resource, start and end properties
-  var body = _.pick(req.body, ['resource', 'start', 'end']);
+  var body = _.pick(req.body, ['status', 'username']);
 
   if(!ObjectID.isValid(id)){
     res.status(404).send();

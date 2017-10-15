@@ -7,18 +7,19 @@ var ReserveCategory = mongoose.model('reserveCategory', {
     minlength: 1,
     trim: true
   },
-  resource: {
+  useremail: {
     type: String,
     default: null
   },
-  reservedAt: {
-    type: Number
+  reservedate: {
+    type: Date
   },
-  start: {
-    type: Number
+  status: {
+    type: Number,
+    default:0
   },
-  end: {
-    type: Number
+  time: {
+    type: String
   }
 });
 
