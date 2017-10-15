@@ -97,17 +97,9 @@ app.get('/reserveCategory', (req, res) => {
 }, (e) => {
   res.status(400).send(e);
 })
-
-
-// get request by id to reserved categories
-app.get('/reserveCategory/:id', (req, res) => {
-  var id = req.params.id;
-
-  if(!ObjectID.isValid(id)){
-    res.status(404).send();
-  }
-
-  ReserveCategory.findById(id).then((reserveCategory) => {
+app.get('/userDetail/:useremail', (req, res) => {
+  var email = req.params.useremail;
+  ReserveCategory.find({useremail:email}).then((reserveCategory) => {
     if(!reserveCategory){
       res.status(404).send();
     }
@@ -116,6 +108,24 @@ app.get('/reserveCategory/:id', (req, res) => {
     res.status(404).send();
   })
 })
+
+// get request by id to reserved categories
+// app.get('/reserveCategory/:id', (req, res) => {
+//   var id = req.params.id;
+
+//   if(!ObjectID.isValid(id)){
+//     res.status(404).send();
+//   }
+
+//   ReserveCategory.findById(id).then((reserveCategory) => {
+//     if(!reserveCategory){
+//       res.status(404).send();
+//     }
+//       return res.send({reserveCategory});
+//   }, (e) => {
+//     res.status(404).send();
+//   })
+// })
 
 // delete request to reserved categories
 
