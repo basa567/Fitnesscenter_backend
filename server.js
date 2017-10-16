@@ -81,8 +81,7 @@ app.post('/reserveCategory', (req, res) => {
 });
 
 app.get('/reserveCategory/:date', (req, res) => {
-  ReserveCategory.find({reservedate:req.params.date}).then((doc)=> {
-    console.log(doc);
+  ReserveCategory.find({reservedate:req.params.date}).then((doc)=> {   
     res.send(doc);
   })
 }, (e) => {
@@ -149,7 +148,7 @@ app.delete('/reserveCategory/:id', (req, res) => {
 
 app.put('/reserveCategory/:id',(req,res)=>{
   var id = req.params.id;
-  var reserve = { status:1, useremail: req.body.useremail };
+  var reserve = { status:1, useremail: req.query.useremail };
   ReserveCategory.update({_id:id},reserve).then((doc) => {
     res.send(doc);
   }, (e) => {
