@@ -81,6 +81,7 @@ app.post('/reserveCategory', (req, res) => {
 });
 
 app.get('/reserveCategory/:date', (req, res) => {
+
   ReserveCategory.find({reservedate:req.params.date}).then((doc)=> {   
     res.send(doc);
   })
@@ -99,11 +100,8 @@ app.get('/reserveCategory', (req, res) => {
 })
 app.get('/userDetail/:useremail', (req, res) => {
   var email = req.params.useremail;
-  ReserveCategory.find({useremail:email}).then((reserveCategory) => {
-    if(!reserveCategory){
-      res.status(404).send();
-    }
-      return res.send({reserveCategory});
+  ReserveCategory.find({useremail:email}).then((doc) => {    
+      return res.send(doc);
   }, (e) => {
     res.status(404).send();
   })
