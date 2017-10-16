@@ -81,8 +81,9 @@ app.post('/reserveCategory', (req, res) => {
 });
 
 app.get('/reserveCategory/:date', (req, res) => {
-  ReserveCategory.find({reservedate:req.params.date}).then((categories)=> {
-    res.send({categories});
+  ReserveCategory.find({reservedate:req.params.date}).then((doc)=> {
+    console.log(doc);
+    res.send(doc);
   })
 }, (e) => {
   res.status(400).send(e);
