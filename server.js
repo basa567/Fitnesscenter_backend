@@ -154,6 +154,16 @@ app.put('/reserveCategory/:id',(req,res)=>{
   })
 })
 
+app.put('/cancelreserve/:id',(req,res)=>{
+  var id = req.params.id;
+  var reserve = { status:0, useremail:"" };
+  ReserveCategory.update({_id:id},reserve).then((doc) => {
+    res.send(doc);
+  }, (e) => {
+    res.status(400).send(e);
+  })
+})
+
 app.patch('/reserveCategory/:id', (req, res) => {
   var id = req.params.id;
   // using lodash to let user to update only resource, start and end properties
